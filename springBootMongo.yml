@@ -3,27 +3,27 @@ kind: ReplicationController
 metadata:
   labels:
     name: springboot
-  name: sping-controller
+  name: spring-controller
 spec:
   replicas: 1
   template:
     metadata:
-      labels: 
-        name: spingboot
+      labels:
+        name: springboot
     spec:
       containers:
-      - image: ticlacalvin/sping-boot-mongo
+      - image: ticlacalvin/spring-boot-mongo
         name: springboot
         ports:
         - name: springboot
-          containerPort:8080
----         
+          containerPort: 8080      
+---
 # Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: sprintboot
+    name: springboot
   name: springboot
 spec:
   type: NodePort
@@ -35,7 +35,7 @@ spec:
 ---
 # Mongo host path rc
 apiVersion: v1
-kind ReplicationController
+kind: ReplicationController
 metadata:
   labels:
     name: mongo
@@ -60,7 +60,7 @@ spec:
       volumes:
       - name: mongo-persistent-storage
         hostPath:
-          path: /tmp/dbbackup
+         path: /tmp/dbbackup
 ---
 # Mongo Node Port RC
 apiVersion: v1
